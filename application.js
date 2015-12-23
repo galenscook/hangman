@@ -68,12 +68,20 @@ function guess(event){
   request.done(function(response){
     parseGameObject(response);
     updateGameboard(phrase, remainingGuesses)
-    updateHangman()
+    if(state === 'alive'){
+      updateHangman()
+    }
   })
 }
 
 function gameOver(){
-  var response = window.confirm("Womp, womp.  You lost.  Would you like to play again?")
+  var prompt
+  if(state === 'lost'){
+    prompt = "Womp, womp.  You lost.  Would you like to play again?"
+  } else {
+    prompt = "CONGRATULATIONS!  You have survived another round.  Want to test your luck again?"
+  }
+  var response = window.confirm(prompt)
   if(response === true){
     $('#alphabet li').removeClass('clicked');
     startGame();
@@ -94,6 +102,8 @@ function draw($pathFromx, $pathFromy, $pathTox, $pathToy) {
     var canvas = document.getElementById("figure");
     var context = canvas.getContext("2d");
     context.beginPath();
+    context.strokeStyle="#37C2DD";
+    context.lineWidth= 3;
     context.moveTo($pathFromx, $pathFromy);
     context.lineTo($pathTox, $pathToy);
     context.stroke(); 

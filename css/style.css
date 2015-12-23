@@ -1,27 +1,40 @@
+* {
+  background-color: #fff;
+  color: #37C2DD;
+}
 
-header button {
-  float: right;
+h1 {
+  font-family: "Walter Turncoat", cursive;
 }
 
 
+#alphabet {
+  margin: 1em 1.5em;
+}
 
 #alphabet li {
   font-size: 1.2em;
   font-weight: 100;
+  color: #fff;
   list-style-type: none;
   float: left;
-  width: 2em;
+  width: 1.5em;
   padding: 0.5em;
   margin: 0.5em;
   text-align: center;
-  background-color: transparent;
+  background-color: #37C2DD;
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
 }
 
+#alphabet li:hover {
+  background-color: #fff;
+  color: #37C2DD;
+}
+
 #alphabet .clicked {
-  background-color: red;
+  opacity:0.4;
   text-decoration: none;
   cursor: default;
 }
@@ -36,6 +49,6 @@ header button {
 #hangman {
   text-align: center;
 }
-canvas {
+/*canvas {
   border: 1px dashed black;
-}
+}*/

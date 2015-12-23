@@ -3,6 +3,8 @@ header button {
   float: right;
 }
 
+
+
 #alphabet li {
   font-size: 1.2em;
   font-weight: 100;
@@ -18,10 +20,16 @@ header button {
   cursor: pointer;
 }
 
+#alphabet .clicked {
+  background-color: red;
+  text-decoration: none;
+  cursor: default;
+}
+
 #target {
   text-align: center;
-  font-size: 1.2em;
-  font-weight: 100;
+  font-size: 2em;
+  font-weight: 50;
   margin-top: 3em;
 }
 

@@ -3,6 +3,8 @@ $(document).ready(function(){
   var phrase;
   var remainingGuesses;
   var state;
+  var canvas = document.getElementById("figure");
+  var context = canvas.getContext("2d");
   
   startGame()
   $('#alphabet li').click(guess)
@@ -99,8 +101,6 @@ function updateHangman(){
 }
 
 function draw($pathFromx, $pathFromy, $pathTox, $pathToy) {
-    var canvas = document.getElementById("figure");
-    var context = canvas.getContext("2d");
     context.beginPath();
     context.strokeStyle="#37C2DD";
     context.lineWidth= 3;
@@ -116,10 +116,7 @@ function gallow() {
   draw (80, 10, 80, 20);
 }
 
-
 function head(){
-  var canvas = document.getElementById("figure");
-  var context = canvas.getContext("2d");
   context.beginPath();
   context.arc(80, 32, 14, 0, Math.PI*2, true);
   context.stroke();
@@ -146,8 +143,6 @@ function leftLeg(){
 }
 
 function resetCanvas(){
-  var canvas = document.getElementById("figure");
-  var context = canvas.getContext("2d");
   context.clearRect(0, 0, canvas.width, canvas.height);
   gallow();
 }

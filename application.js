@@ -3,7 +3,6 @@ $(document).ready(function(){
   var phrase;
   var remainingGuesses;
   var state;
-
   
   startGame()
   $('#alphabet li').click(guess)
@@ -11,7 +10,6 @@ $(document).ready(function(){
 })
 
 function startGame(){
-  // gallow();
   resetCanvas();
   var request = $.ajax({
     type:'POST',
@@ -28,7 +26,6 @@ function parseGameObject(APIresponse){
   response = JSON.parse(APIresponse)
   gameKey = response['game_key']
   phrase = response['phrase']
-  console.log(phrase)
   state = response['state']
   remainingGuesses = response['num_tries_left']
 }
@@ -79,7 +76,6 @@ function gameOver(){
   var response = window.confirm("Womp, womp.  You lost.  Would you like to play again?")
   if(response === true){
     $('#alphabet li').removeClass('clicked');
-    // resetCanvas();
     startGame();
   }
 }
@@ -142,9 +138,6 @@ function leftLeg(){
 function resetCanvas(){
   var canvas = document.getElementById("figure");
   var context = canvas.getContext("2d");
-  // console.log(canvas.width)
-  // debugger
   context.clearRect(0, 0, canvas.width, canvas.height);
-  // console.log("HERE")
   gallow();
 }

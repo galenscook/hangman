@@ -3,6 +3,8 @@ $(document).ready(function(){
   var phrase;
   var remainingGuesses;
   var state;
+  var canvas = document.getElementById("figure");
+  var context = canvas.getContext("2d");
   
   startGame()
   $('#alphabet li').click(guess)
@@ -68,12 +70,20 @@ function guess(event){
   request.done(function(response){
     parseGameObject(response);
     updateGameboard(phrase, remainingGuesses)
-    updateHangman()
+    if(state === 'alive'){
+      updateHangman()
+    }
   })
 }
 
 function gameOver(){
-  var response = window.confirm("Womp, womp.  You lost.  Would you like to play again?")
+  var prompt
+  if(state === 'lost'){
+    prompt = "Womp, womp.  You lost.  Would you like to play again?"
+  } else {
+    prompt = "CONGRATULATIONS!  You have survived another round.  Want to test your luck again?"
+  }
+  var response = window.confirm(prompt)
   if(response === true){
     $('#alphabet li').removeClass('clicked');
     startGame();
@@ -91,9 +101,9 @@ function updateHangman(){
 }
 
 function draw($pathFromx, $pathFromy, $pathTox, $pathToy) {
-    var canvas = document.getElementById("figure");
-    var context = canvas.getContext("2d");
     context.beginPath();
+    context.strokeStyle="#37C2DD";
+    context.lineWidth= 3;
     context.moveTo($pathFromx, $pathFromy);
     context.lineTo($pathTox, $pathToy);
     context.stroke(); 
@@ -106,10 +116,7 @@ function gallow() {
   draw (80, 10, 80, 20);
 }
 
-
 function head(){
-  var canvas = document.getElementById("figure");
-  var context = canvas.getContext("2d");
   context.beginPath();
   context.arc(80, 32, 14, 0, Math.PI*2, true);
   context.stroke();
@@ -136,8 +143,6 @@ function leftLeg(){
 }
 
 function resetCanvas(){
-  var canvas = document.getElementById("figure");
-  var context = canvas.getContext("2d");
   context.clearRect(0, 0, canvas.width, canvas.height);
   gallow();
 }
